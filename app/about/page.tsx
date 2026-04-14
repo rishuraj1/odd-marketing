@@ -141,7 +141,7 @@ export default function AboutPage() {
             <span className="text-[#ff5c35]">boring marketing.</span>
           </h1>
           <p className="text-[#6b6b6b] text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed">
-            So we built the agency we always wished existed. One that treats
+            So  we built the agency we always wished existed. One that treats
             creativity as a competitive advantage, not an afterthought.
           </p>
         </div>
