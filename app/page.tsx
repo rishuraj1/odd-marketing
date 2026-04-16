@@ -212,9 +212,6 @@ export default function HomePage() {
                 key={feature.title}
                 className="w-[78vw] max-w-[300px] md:max-w-none flex-shrink-0 md:flex-shrink md:w-auto snap-center group p-5 sm:p-8 rounded-2xl border border-[#222222] bg-[#141414] hover:border-[#333333] transition-all duration-300"
               >
-                <span className="text-[#ff5c35] text-2xl sm:text-3xl font-black font-[family-name:var(--font-syne)] mb-3 sm:mb-5 block">
-                  {feature.icon}
-                </span>
                 <h3 className="font-[family-name:var(--font-syne)] font-bold text-base sm:text-xl mb-2 sm:mb-3">
                   {feature.title}
                 </h3>
