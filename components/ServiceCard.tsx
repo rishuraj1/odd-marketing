@@ -20,7 +20,7 @@ export default function ServiceCard({
   return (
     <div
       id={id}
-      className={`group relative rounded-2xl p-7 border transition-all duration-500 hover:-translate-y-1 ${
+      className={`group relative w-full rounded-2xl p-6 sm:p-7 border transition-all duration-500 hover:-translate-y-1 ${
         featured
           ? "bg-[#ff5c35]/10 border-[#ff5c35]/30 hover:border-[#ff5c35]/60"
           : "bg-[#141414] border-[#222222] hover:border-[#333333]"

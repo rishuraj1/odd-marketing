@@ -24,7 +24,7 @@ export default function HeroSection({
   children,
 }: HeroSectionProps) {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden px-6 pt-16">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden px-4 sm:px-6 pt-16">
       <div
         className="absolute inset-0 pointer-events-none"
         aria-hidden="true"
@@ -46,7 +46,7 @@ export default function HeroSection({
           </div>
         )}
 
-        <h1 className="font-[family-name:var(--font-syne)] font-black text-5xl sm:text-6xl md:text-7xl lg:text-8xl leading-[0.95] tracking-tight mb-6">
+        <h1 className="font-[family-name:var(--font-syne)] font-black text-[clamp(1.75rem,8vw,5rem)] sm:text-6xl md:text-7xl lg:text-8xl leading-[1] tracking-tight mb-4 sm:mb-6">
           {headline}
           {headlineAccent && (
             <>
@@ -56,19 +56,19 @@ export default function HeroSection({
           )}
         </h1>
 
-        <p className="text-[#6b6b6b] text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed mb-10">
+        <p className="text-[#6b6b6b] text-sm sm:text-xl max-w-2xl mx-auto leading-relaxed mb-8 sm:mb-10 px-2 sm:px-0">
           {subheadline}
         </p>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <div className="flex flex-row items-center justify-center gap-2 sm:gap-4 w-full">
           <Link
             href={ctaHref}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-[#ff5c35] text-[#0a0a0a] font-bold text-base transition-all duration-300 hover:bg-[#ff7a5a] hover:scale-105 active:scale-95 shadow-[0_0_30px_rgba(255,92,53,0.3)]"
+            className="flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 sm:gap-2 px-4 py-2.5 sm:px-8 sm:py-4 rounded-full bg-[#ff5c35] text-[#0a0a0a] font-bold text-sm sm:text-base transition-all duration-300 hover:bg-[#ff7a5a] hover:scale-105 active:scale-95 shadow-[0_0_30px_rgba(255,92,53,0.3)] max-w-[200px] sm:max-w-none"
           >
-            {ctaText}
+            <span className="truncate">{ctaText}</span>
             <svg
-              width="16"
-              height="16"
+              width="14"
+              height="14"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -76,6 +76,7 @@ export default function HeroSection({
               strokeLinecap="round"
               strokeLinejoin="round"
               aria-hidden="true"
+              className="shrink-0"
             >
               <path d="M5 12h14M12 5l7 7-7 7" />
             </svg>
@@ -84,9 +85,9 @@ export default function HeroSection({
           {secondaryCtaText && secondaryCtaHref && (
             <Link
               href={secondaryCtaHref}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full border border-[#333333] text-[#aaaaaa] font-semibold text-base transition-all duration-300 hover:border-[#555555] hover:text-[#fafafa]"
+              className="flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 sm:gap-2 px-4 py-2.5 sm:px-8 sm:py-4 rounded-full border border-[#333333] text-[#aaaaaa] font-semibold text-sm sm:text-base transition-all duration-300 hover:border-[#555555] hover:text-[#fafafa] max-w-[200px] sm:max-w-none"
             >
-              {secondaryCtaText}
+              <span className="truncate">{secondaryCtaText}</span>
             </Link>
           )}
         </div>
