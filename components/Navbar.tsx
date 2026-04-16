@@ -29,12 +29,12 @@ export default function Navbar() {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled
-          ? "bg-[#0a0a0a]/90 backdrop-blur-md border-b border-[#222222]"
+        isScrolled || menuOpen
+          ? "bg-[#0a0a0a]/95 backdrop-blur-md border-b border-[#222222]"
           : "bg-transparent"
       }`}
     >
-      <nav className="max-w-7xl mx-auto px-6 lg:px-12 h-16 flex items-center justify-between">
+      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 h-16 flex items-center justify-between">
         <Link
           href="/"
           className="flex items-center gap-2 group"
@@ -79,37 +79,40 @@ export default function Navbar() {
           Let&apos;s Talk
         </Link>
 
+        {/* Hamburger — large 44×44 tap target */}
         <button
           id="mobile-menu-toggle"
-          className="md:hidden flex flex-col gap-1.5 p-2 cursor-pointer"
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle mobile menu"
+          className="md:hidden flex flex-col items-center justify-center gap-1.5 min-w-[44px] min-h-[44px] p-2 cursor-pointer rounded-lg active:bg-white/10 transition-colors"
+          onClick={() => setMenuOpen((prev) => !prev)}
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
           aria-expanded={menuOpen}
+          type="button"
         >
           <span
-            className={`block w-6 h-0.5 bg-[#fafafa] transition-all duration-300 ${
+            className={`block w-6 h-0.5 bg-[#fafafa] transition-all duration-300 origin-center ${
               menuOpen ? "rotate-45 translate-y-2" : ""
             }`}
           />
           <span
             className={`block w-6 h-0.5 bg-[#fafafa] transition-all duration-300 ${
-              menuOpen ? "opacity-0" : ""
+              menuOpen ? "opacity-0 scale-x-0" : ""
             }`}
           />
           <span
-            className={`block w-6 h-0.5 bg-[#fafafa] transition-all duration-300 ${
+            className={`block w-6 h-0.5 bg-[#fafafa] transition-all duration-300 origin-center ${
               menuOpen ? "-rotate-45 -translate-y-2" : ""
             }`}
           />
         </button>
       </nav>
 
+      {/* Mobile dropdown — slides down below nav */}
       <div
-        className={`md:hidden overflow-hidden transition-all duration-300 ${
-          menuOpen ? "max-h-80 opacity-100" : "max-h-0 opacity-0"
-        } bg-[#0a0a0a]/95 backdrop-blur-md border-b border-[#222222]`}
+        className={`md:hidden transition-all duration-300 ease-in-out overflow-hidden bg-[#0a0a0a] border-b border-[#1a1a1a] ${
+          menuOpen ? "max-h-80 opacity-100" : "max-h-0 opacity-0 pointer-events-none"
+        }`}
       >
-        <ul className="flex flex-col px-6 py-4 gap-4">
+        <ul className="flex flex-col px-6 py-4 gap-5">
           {navLinks.map((link) => (
             <li key={link.href}>
               <Link
@@ -119,15 +122,17 @@ export default function Navbar() {
                     ? "text-[#ff5c35]"
                     : "text-[#aaaaaa] hover:text-[#fafafa]"
                 }`}
+                onClick={() => setMenuOpen(false)}
               >
                 {link.label}
               </Link>
             </li>
           ))}
-          <li>
+          <li className="pt-1">
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#ff5c35] text-[#0a0a0a] text-sm font-semibold"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#ff5c35] text-[#0a0a0a] text-sm font-semibold active:scale-95 transition-transform"
+              onClick={() => setMenuOpen(false)}
             >
               Let&apos;s Talk
             </Link>

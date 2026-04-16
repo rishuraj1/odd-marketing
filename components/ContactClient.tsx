@@ -6,13 +6,13 @@ const contactMethods = [
   {
     icon: "✉️",
     label: "Email",
-    value: "hello@oddmarketing.co",
-    href: "mailto:hello@oddmarketing.co",
+    value: "toufiqhussain.30@gmail.com",
+    href: "mailto:toufiqhussain.30@gmail.com",
   },
   {
     icon: "📍",
     label: "Location",
-    value: "Remote-first, Worldwide",
+    value: "Remote-first, India",
     href: null,
   },
   {
@@ -24,10 +24,9 @@ const contactMethods = [
 ];
 
 const services = [
-  "Social Media Content",
-  "Ad Copywriting",
-  "Branding Content",
-  "Campaign Strategy",
+  "Basic Plan",
+  "Community Plan",
+  "Business Suite",
   "Not sure yet",
 ];
 
@@ -50,6 +49,7 @@ export default function ContactClient() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<Partial<FormState>>({});
+  const [sendError, setSendError] = useState<string | null>(null);
 
   const validate = (): boolean => {
     const newErrors: Partial<FormState> = {};
@@ -64,16 +64,29 @@ export default function ContactClient() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
     setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
+    setSendError(null);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Something went wrong.");
       setSubmitted(true);
       setForm(initialForm);
       setErrors({});
-    }, 1200);
+    } catch (err: unknown) {
+      setSendError(
+        err instanceof Error ? err.message : "Failed to send. Please try again."
+      );
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleChange = (
@@ -267,6 +280,13 @@ export default function ContactClient() {
                 )}
               </div>
 
+              {sendError && (
+                <div role="alert" className="flex items-start gap-3 p-4 rounded-xl bg-red-950/50 border border-red-500/30 text-red-400 text-sm">
+                  <span className="text-base shrink-0">⚠️</span>
+                  <p>{sendError}</p>
+                </div>
+              )}
+
               <button
                 id="contact-submit"
                 type="submit"
@@ -298,7 +318,7 @@ export default function ContactClient() {
                     Sending...
                   </span>
                 ) : (
-                  "Send Message"
+                  "Send Message →"
                 )}
               </button>
 

@@ -8,10 +8,10 @@ const footerLinks = {
     { href: "/contact", label: "Contact" },
   ],
   Services: [
-    { href: "/services#social-media", label: "Social Media" },
-    { href: "/services#ad-copy", label: "Ad Copywriting" },
-    { href: "/services#branding", label: "Branding Content" },
-    { href: "/services#campaigns", label: "Campaign Strategy" },
+    { href: "/services#social-media", label: "Content Creation" },
+    { href: "/services#ad-copy", label: "Social Media Management" },
+    { href: "/services#campaigns", label: "Product Market Analytics" },
+    { href: "/services#branding", label: "Website SEO/GEO" },
   ],
 };
 
